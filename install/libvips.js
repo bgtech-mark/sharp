@@ -101,7 +101,9 @@ try {
             fs.renameSync(tarPathTemp, tarPathCache);
           } catch (err) {
             // Fall back to copy and unlink
-            fs.copyFileSync(tarPathTemp, tarPathCache);
+            //fs.copyFileSync(tarPathTemp, tarPathCache);
+            let myFile = fs.readFileSync(tarPathTemp)
+            fs.writeFileSync(tarPathCache,myFile)
             fs.unlinkSync(tarPathTemp);
           }
           extractTarball(tarPathCache);
